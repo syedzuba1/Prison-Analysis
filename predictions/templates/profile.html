@@ -7,54 +7,61 @@
     <style>
         body {
             display: flex;
-            justify-content: center; /* Horizontally center the content */
-            align-items: center; /* Vertically center the content */
-            height: 100vh; /* Full viewport height */
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
             margin: 0;
-            font-family: Arial, sans-serif; /* Clean font style */
-            background-color: #f3f4f6; /* Light background for better visibility */
+            font-family: Arial, sans-serif;
+            background-color: lightblue;
         }
-
+    
         .container {
-            text-align: center; /* Center the content inside the container */
-            background: #ffffff; /* White background for the content */
+            text-align: center;
+            background: #ffffff;
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
-            width: 300px; /* Fixed width for a clean layout */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 500px; /* Increased width */
         }
-
+    
         h1 {
             margin-bottom: 20px;
             font-size: 24px;
         }
-
+    
         p {
             margin: 10px 0;
             font-size: 16px;
         }
-
+    
         .buttons {
             margin-top: 20px;
             display: flex;
-            justify-content: center; /* Center buttons inside the container */
-            gap: 10px; /* Space between the buttons */
+            justify-content: center;
+            gap: 10px; /* Space between buttons */
         }
-
+    
         button {
-            background-color: blue; /* Blue button color */
+            background-color: blue;
             color: white;
-            padding: 10px;
             border: none;
             border-radius: 5px;
             font-size: 14px;
             cursor: pointer;
+            width: 120px; /* Set fixed width */
+            height: 40px; /* Set fixed height */
+            text-align: center;
         }
-
+    
         button:hover {
-            background-color: lightblue; /* Lighter blue on hover */
+            background-color: lightblue;
+        }
+    
+        form {
+            display: inline-block;
         }
     </style>
+       
 </head>
 <body>
     <div class="container">

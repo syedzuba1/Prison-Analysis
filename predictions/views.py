@@ -13,7 +13,7 @@ from .forms import CustomUserCreationForm
 from .models import UserProfile
 from django.db import IntegrityError
 from django.contrib.auth import logout
-from .models import Prediction1
+from .models import Prediction1,Prediction3,Prediction2,Prediction4
 #with open('predictions/models/preprocessing.pkl', 'rb') as file:
 #    preprocessor1 = pickle.load(file)
 with open('predictions/models/logistic_regression_model.pkl', 'rb') as file:
@@ -180,6 +180,15 @@ def predict_view_2(request):
                 'predicted_mental_illness': f"Predicted number of mental illness cases: {predicted_mental_illness[0]:.2f}"
             }
 
+            Prediction2.objects.create(
+                user=request.user,  # Logged-in user
+                total_education_facilities=total_education_facilities,
+                escapee_rate=escapee_rate,
+                mental_illness_rate=mental_illness_rate,
+                predicted_escapees=predicted_escapees[0],
+                predicted_mental_illness=predicted_mental_illness[0]
+            )
+
     else:
         form = AdaptationPredictionForm()
 
@@ -215,6 +224,14 @@ def predict_view_3(request):
                 status = "Convicted" if prediction[0] == 1 else "Undertrial"
                 confidence = max(prediction_proba[0]) * 100
                 result = f"Prediction: {status} (Confidence: {confidence:.2f}%)"
+                
+                Prediction3.objects.create(
+                    user=request.user,  # Logged-in user
+                    state=state,
+                    crime_type=crime_type,
+                    predicted_status=status,
+                    confidence=confidence
+                )
     else:
         form = CrimePredictionForm()
         
@@ -249,6 +266,14 @@ def predict_view_4(request):
                 predicted_budgets = model4.predict(input_data)
                 
                 result = f"Predicted budgets: {predicted_budgets[0]}"
+
+                Prediction4.objects.create(
+                    user=request.user,  # Logged-in user
+                    state_ut=state_ut,
+                    year=year,
+                    num_years=num_years,
+                    predicted_budget=predicted_budgets[0]
+                )
             except Exception as e:
                 result = f"Error during prediction: {str(e)}"
     else:
