@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        header {
+            background: linear-gradient(45deg, #4d798a, #3c5a85);
+            color: white;
+            padding: 2rem;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin: 0;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem 5%;
+        }
+
+        .database-card {
+            background: #1a1a1a;
+            color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .database-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        .database-card a {
+            text-decoration: none;
+            color: #ffcc00;
+            font-weight: bold;
+        }
+
+        .database-card a:hover {
+            color: #ffd633;
+        }
+
+        footer {
+            margin-top: 2rem;
+            font-size: 0.9rem;
+        }
+    </style>
+    <title>Select a Database</title>
+</head>
+<body>
+    <header>
+        <h1>Select a Database</h1>
+    </header>
+
+    <main class="container">
+        <div class="database-card">
+            <h2>Database 1</h2>
+            <p>Description: Crime Data from Region A.</p>
+            <a href="/database1/">Access Database</a>
+        </div>
+        <div class="database-card">
+            <h2>Database 2</h2>
+            <p>Description: Prison Inmate Demographics.</p>
+            <a href="/database2/">Access Database</a>
+        </div>
+        <div class="database-card">
+            <h2>Database 3</h2>
+            <p>Description: Budget and Expenditure Data.</p>
+            <a href="/database3/">Access Database</a>
+        </div>
+        <div class="database-card">
+            <h2>Database 4</h2>
+            <p>Description: Escape and Mental Health Records.</p>
+            <a href="/database4/">Access Database</a>
+        </div>
+    </main>
+
+    <footer>
+        <p>Project By: Apoorv, Jainam, Kalash, and Zubair</p>
+    </footer>
+</body>
+</html>

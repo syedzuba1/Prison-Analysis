@@ -16,8 +16,19 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.contrib.auth.views import LoginView
+from predictions import views
+from django.contrib.auth.views import LogoutView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('profile/', views.profile, name='profile'),
+    path('edit-profile/', views.edit_profile, name='edit_profile'),
     path('', include('predictions.urls')),
+    path('register/', views.register, name='register'),  # Add this
+    path('login/', LoginView.as_view(template_name='registration/login.html'), name='login'),
+    path('logout/', LogoutView.as_view(), name='logout'),
+    path('dashboard/', views.dashboard,name='dashboard'),
+    path('delete-account/', views.logout_and_delete_profile, name='delete_account')
+   # path('addition/', addition, name='addition'),
 ]

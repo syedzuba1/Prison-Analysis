@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center; /* Center horizontally */
+            align-items: flex-start; /* Align content near the top */
+            height: 100vh; /* Full viewport height */
+            margin: 0;
+            padding-top: 50px; /* Space from the top */
+            font-family: Arial, sans-serif; /* Clean font style */
+            background-color: #f3f4f6; /* Light background */
+        }
+
+        .container {
+            text-align: center; /* Center text within the container */
+            background: #ffffff; /* White background for the form */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            width: 300px; /* Fixed width for the container */
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        button {
+            background-color: blue; /* Blue button */
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+            margin-top: 10px; /* Add spacing above the button */
+        }
+
+        button:hover {
+            background-color: lightblue; /* Lighter blue on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Edit Your Profile</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }} <!-- Render the form fields -->
+            <button type="submit">Save Changes</button>
+        </form>
+    </div>
+</body>
+</html>
+

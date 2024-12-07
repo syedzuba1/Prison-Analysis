@@ -83,7 +83,7 @@ DATABASES = {
     }
 }
 
-
+LOGIN_REDIRECT_URL = '/profile/'
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
@@ -113,7 +113,8 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-
+LOGIN_URL = '/login/'
+AUTH_PASSWORD_VALIDATORS = []
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
 # Static files (CSS, JavaScript, Images)

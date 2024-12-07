@@ -1,12 +1,17 @@
 import pandas as pd
 import pickle
 from django.shortcuts import render
-from .forms import EconomicImpactForm, AdaptationPredictionForm, CrimePredictionForm, BudgetPredictionForm
+from .forms import EconomicImpactForm,CustomUserChangeForm,UserChangeForm,CustomUserCreationForm,AdaptationPredictionForm, CrimePredictionForm, BudgetPredictionForm
 import numpy as np
 import joblib
-
-
-
+from django.contrib.auth.forms import UserCreationForm
+from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from django.contrib import messages
+from .forms import CustomUserCreationForm
+from .models import UserProfile
+from django.db import IntegrityError
 #with open('predictions/models/preprocessing.pkl', 'rb') as file:
 #    preprocessor1 = pickle.load(file)
 with open('predictions/models/logistic_regression_model.pkl', 'rb') as file:
@@ -41,10 +46,42 @@ def load_preprocessed_data():
 with open("predictions/models/crime_model.pkl", "rb") as f:
     model, scaler, combined_df = pickle.load(f)
 
+@login_required
+def profile(request):
+    return render(request, 'profile.html')
+
+@login_required
+def edit_profile(request):
+    if request.method == 'POST':
+        # Pass the POST data and user instance to the form
+        form = CustomUserChangeForm(request.POST, instance=request.user)
+        if form.is_valid():
+            # Save the user instance
+            user = form.save(commit=False)
+            user.save()
+            # Save or update the age in UserProfile
+            if hasattr(user, 'userprofile'):
+                user.userprofile.age = form.cleaned_data['age']
+                user.userprofile.save()
+            else:
+                UserProfile.objects.create(user=user, age=form.cleaned_data['age'])
+
+            messages.success(request, 'Your profile has been updated successfully!')
+            return redirect('profile')
+    else:
+        # Prepopulate the form, including age from UserProfile
+        initial_data = {}
+        if hasattr(request.user, 'userprofile'):
+            initial_data['age'] = request.user.userprofile.age
+        form = CustomUserChangeForm(instance=request.user, initial=initial_data)
+
+    return render(request, 'edit_profile.html', {'form': form})
 
 def Home(request):
     return render(request, 'Home.html')
 
+def dashboard(request):
+    return render(request, 'Home.html')
 
 # Define mappings based on training
 age_group_mapping = {
@@ -208,3 +245,52 @@ def predict_view_4(request):
     else:
         form = BudgetPredictionForm()
     return render(request, 'predict_lstm_form.html', {'form': form, 'result': result,})
+
+def register(request):
+    if request.method == 'POST':
+        form = CustomUserCreationForm(request.POST)
+        if form.is_valid():
+            try:
+                # Create the user instance without saving to the database
+                user = form.save(commit=False)
+
+                # Populate additional fields from the cleaned_data
+                user.first_name = form.cleaned_data['first_name']
+                user.last_name = form.cleaned_data['last_name']
+                user.email = form.cleaned_data['email']
+                user.save()  # Save user instance to the database
+
+                # Save the age in the associated UserProfile
+                user_profile, created = UserProfile.objects.get_or_create(user=user)
+                user_profile.age = form.cleaned_data['age']
+                user_profile.save()
+
+                messages.success(request, 'Your account has been created successfully!')
+                return redirect('login')  # Redirect to login page after registration
+            except IntegrityError:
+                messages.error(request, 'An error occurred while creating your profile. Please try again.')
+        else:
+            messages.error(request, 'There was an error in your form. Please correct the errors and try again.')
+    else:
+        form = CustomUserCreationForm()
+
+    return render(request, 'registration/register.html', {'form': form})
+        
+def addition(request):
+    return render(request, 'addition.html')
+@login_required
+
+def logout_and_delete_profile(request):
+    # Get the currently logged-in user
+    user = request.user
+
+    # Log out the user
+    logout(request)
+
+    # Delete the user profile and the user itself
+    if hasattr(user, 'userprofile'):
+        user.userprofile.delete()  # Delete the related UserProfile if it exists
+    user.delete()  # Delete the User
+
+    # Redirect to the login page or any other page
+    return redirect('login')  # Replace 'login' with your desired URL name

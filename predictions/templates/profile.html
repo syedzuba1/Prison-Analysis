@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center; /* Horizontally center the content */
+            align-items: center; /* Vertically center the content */
+            height: 100vh; /* Full viewport height */
+            margin: 0;
+            font-family: Arial, sans-serif; /* Clean font style */
+            background-color: #f3f4f6; /* Light background for better visibility */
+        }
+
+        .container {
+            text-align: center; /* Center the content inside the container */
+            background: #ffffff; /* White background for the content */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+            width: 300px; /* Fixed width for a clean layout */
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        p {
+            margin: 10px 0;
+            font-size: 16px;
+        }
+
+        .buttons {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center; /* Center buttons inside the container */
+            gap: 10px; /* Space between the buttons */
+        }
+
+        button {
+            background-color: blue; /* Blue button color */
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: lightblue; /* Lighter blue on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome, {{ user.username }}!</h1>
+        <p>Email: {{ user.email }}</p>
+        <p>First Name: {{ user.first_name }}</p>
+        <p>Last Name: {{ user.last_name }}</p>
+        <p>Age: {{ user.userprofile.age }} </p>
+        <div class="buttons">
+            <!-- Logout Button -->
+            <form method="post" action="{% url 'logout' %}" style="display: inline;">
+                {% csrf_token %}
+                <button type="submit">Logout</button>
+            </form>
+
+            <!-- Edit Profile Button -->
+            <form method="get" action="{% url 'edit_profile' %}" style="display: inline;">
+                <button type="submit">Edit Profile</button>
+            </form>
+            <form method="get" action="{% url 'dashboard' %}" style="display: inline;">
+                <button type="submit">Dashboard</button>
+            </form>
+            <form method="post" action="{% url 'delete_account' %}">
+                {% csrf_token %}
+                <button type="submit" style="color: red;" onclick="return confirm('Are you sure you want to delete your account? This action cannot be undone.');">
+                    Delete My Account
+                </button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
