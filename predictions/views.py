@@ -12,6 +12,7 @@ from django.contrib import messages
 from .forms import CustomUserCreationForm
 from .models import UserProfile
 from django.db import IntegrityError
+from django.contrib.auth import logout
 #with open('predictions/models/preprocessing.pkl', 'rb') as file:
 #    preprocessor1 = pickle.load(file)
 with open('predictions/models/logistic_regression_model.pkl', 'rb') as file:

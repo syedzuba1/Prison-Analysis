@@ -71,7 +71,7 @@ class CustomUserChangeForm(UserChangeForm):
 
     class Meta:
         model = User
-        fields = ['username', 'first_name', 'last_name', 'email', 'age']  # Include only necessary fields
+        fields = [ 'first_name', 'last_name', 'email', 'age']  # Include only necessary fields
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -81,11 +81,11 @@ class CustomUserChangeForm(UserChangeForm):
             del self.fields['password']  # Exclude password from the form
 
         # Customize the username field to remove help text
-        self.fields['username'].help_text = None  # Remove the help text for username
-        self.fields['username'].widget.attrs['placeholder'] = "Enter your username"
+       # self.fields['username'].help_text = None  # Remove the help text for username
+       # self.fields['username'].widget.attrs['placeholder'] = "Enter your username"
 
         # Customize labels for better UX
-        self.fields['username'].label = "Username"
+        #self.fields['username'].label = "Username"
         self.fields['first_name'].label = "First Name"
         self.fields['last_name'].label = "Last Name"
         self.fields['email'].label = "Email Address"
