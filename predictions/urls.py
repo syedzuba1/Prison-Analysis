@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import Home,predict_view_1, predict_view_2, predict_view_3, predict_view_4,addition
+from .views import Home,predict_view_1, predict_view_2, predict_view_3, predict_view_4,addition_view
 
 urlpatterns = [
     path('', Home, name='home'),
@@ -8,5 +8,6 @@ urlpatterns = [
     path('model3/', predict_view_2, name='predict2'),
     path('model4/', predict_view_3, name='predict3'),
     path('model5/', predict_view_4, name='predict4'),
+    path('addition/', addition_view, name='addition'),
  #   path('addition/', views.addition, name='addition'),
 ]

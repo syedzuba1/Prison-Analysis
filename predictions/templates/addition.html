@@ -3,98 +3,196 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <title>Crime Analysis</title>
     <style>
-        body {
-            margin: 0;
-            font-family: 'Roboto', sans-serif;
-            background-color: #f4f4f9;
-            color: #333;
-            text-align: center;
-            padding: 2rem;
-        }
-
-        header {
-            background: linear-gradient(45deg, #4d798a, #3c5a85);
+        .profile-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: #007bff;
             color: white;
-            padding: 2rem;
-        }
-
-        header h1 {
-            font-size: 2.5rem;
-            margin: 0;
-        }
-
-        .container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            padding: 2rem 5%;
-        }
-
-        .database-card {
-            background: #1a1a1a;
-            color: white;
-            padding: 2rem;
-            border-radius: 10px;
-            text-align: center;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s, box-shadow 0.3s;
-            cursor: pointer;
-        }
-
-        .database-card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
-        }
-
-        .database-card a {
+            padding: 10px 20px;
             text-decoration: none;
-            color: #ffcc00;
+            border-radius: 5px;
+            font-size: 14px;
             font-weight: bold;
+            transition: background-color 0.3s;
         }
 
-        .database-card a:hover {
-            color: #ffd633;
+        .profile-button:hover {
+            background-color: #0056b3;
         }
-
-        footer {
-            margin-top: 2rem;
-            font-size: 0.9rem;
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #336699;
+        }
+        h1 {
+            font-size: 4.5rem;
+            font-family: 'Bebas Neue';
+            color: black;
+            text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.8);
+            /* margin: 0; */
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        h2 {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            margin: 20px auto;
+            width: 80%;
+        }
+        .no-data {
+            text-align: center;
+            font-size: 1.2rem;
+            color: gray;
+            margin: 20px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
         }
     </style>
-    <title>Select a Database</title>
 </head>
 <body>
     <header>
-        <h1>Select a Database</h1>
+        <h1>Crime Analysis</h1>
+        <a href="/profile" class="profile-button">Profile</a> <!-- Profile Button -->
     </header>
+    <h1>Crime Analysis</h1>
 
-    <main class="container">
-        <div class="database-card">
-            <h2>Database 1</h2>
-            <p>Description: Crime Data from Region A.</p>
-            <a href="/database1/">Access Database</a>
-        </div>
-        <div class="database-card">
-            <h2>Database 2</h2>
-            <p>Description: Prison Inmate Demographics.</p>
-            <a href="/database2/">Access Database</a>
-        </div>
-        <div class="database-card">
-            <h2>Database 3</h2>
-            <p>Description: Budget and Expenditure Data.</p>
-            <a href="/database3/">Access Database</a>
-        </div>
-        <div class="database-card">
-            <h2>Database 4</h2>
-            <p>Description: Escape and Mental Health Records.</p>
-            <a href="/database4/">Access Database</a>
-        </div>
-    </main>
+    <!-- Card for Model 1 -->
+    <div class="card">
+        <h2>Conviction Status vs Age/Gender</h2>
+        {% if predictions_model1 %}
+            <table>
+                <tr>
+                    <th>User</th>
+                    <th>Age</th>
+                    <th>Gender</th>
+                    <th>Age Group</th>
+                    <th>Prediction</th>
+                    <th>Date Created</th>
+                </tr>
+                {% for prediction in predictions_model1 %}
+                <tr>
+                    <td>{{ prediction.user.username }}</td>
+                    <td>{{ prediction.age }}</td>
+                    <td>{{ prediction.gender }}</td>
+                    <td>{{ prediction.age_group }}</td>
+                    <td>{{ prediction.prediction }}</td>
+                    <td>{{ prediction.date_created }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            <p class="no-data">No Entries to Display</p>
+        {% endif %}
+    </div>
 
-    <footer>
-        <p>Project By: Apoorv, Jainam, Kalash, and Zubair</p>
-    </footer>
+    <!-- Card for Model 2 -->
+    <div class="card">
+        <h2>Escapee and Mental Health Prediction</h2>
+        {% if predictions_model2 %}
+            <table>
+                <tr>
+                    <th>User</th>
+                    <th>Total Education Facilities</th>
+                    <th>Escapee Rate</th>
+                    <th>Mental Illness Rate</th>
+                    <th>Predicted Escapees</th>
+                    <th>Predicted Mental Illness</th>
+                    <th>Date Created</th>
+                </tr>
+                {% for prediction in predictions_model2 %}
+                <tr>
+                    <td>{{ prediction.user.username }}</td>
+                    <td>{{ prediction.total_education_facilities }}</td>
+                    <td>{{ prediction.escapee_rate }}</td>
+                    <td>{{ prediction.mental_illness_rate }}</td>
+                    <td>{{ prediction.predicted_escapees }}</td>
+                    <td>{{ prediction.predicted_mental_illness }}</td>
+                    <td>{{ prediction.date_created }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            <p class="no-data">No Entries to Display</p>
+        {% endif %}
+    </div>
+
+    <!-- Card for Model 3 -->
+    <div class="card">
+        <h2>Crime vs Trial Status</h2>
+        {% if predictions_model3 %}
+            <table>
+                <tr>
+                    <th>User</th>
+                    <th>State</th>
+                    <th>Crime Type</th>
+                    <th>Predicted Status</th>
+                    <th>Confidence</th>
+                    <th>Date Created</th>
+                </tr>
+                {% for prediction in predictions_model3 %}
+                <tr>
+                    <td>{{ prediction.user.username }}</td>
+                    <td>{{ prediction.state }}</td>
+                    <td>{{ prediction.crime_type }}</td>
+                    <td>{{ prediction.predicted_status }}</td>
+                    <td>{{ prediction.confidence }}</td>
+                    <td>{{ prediction.date_created }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            <p class="no-data">No Entries to Display</p>
+        {% endif %}
+    </div>
+
+    <!-- Card for Model 4 -->
+    <div class="card">
+        <h2>Budget vs Overcapacity/Expenditure</h2>
+        {% if predictions_model4 %}
+            <table>
+                <tr>
+                    <th>User</th>
+                    <th>State/UT</th>
+                    <th>Year</th>
+                    <th>Number of Years</th>
+                    <th>Predicted Budget</th>
+                    <th>Date Created</th>
+                </tr>
+                {% for prediction in predictions_model4 %}
+                <tr>
+                    <td>{{ prediction.user.username }}</td>
+                    <td>{{ prediction.state_ut }}</td>
+                    <td>{{ prediction.year }}</td>
+                    <td>{{ prediction.num_years }}</td>
+                    <td>{{ prediction.predicted_budget }}</td>
+                    <td>{{ prediction.date_created }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            <p class="no-data">No Entries to Display</p>
+        {% endif %}
+    </div>
 </body>
 </html>

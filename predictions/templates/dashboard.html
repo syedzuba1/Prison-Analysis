@@ -6,6 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Montserrat:wght@700&family=Bebas+Neue&display=swap" rel="stylesheet">
     <style>
+        .profile-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 14px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .profile-button:hover {
+            background-color: #0056b3;
+        }
         html {
             scroll-behavior: smooth;
         }
@@ -162,6 +179,7 @@
         <h1>Prison Analysis</h1>
         <h2>The Future of Crime Analysis is Here</h2>
         <a href="#about" class="cta-button">Learn More</a>
+        <a href="/profile" class="profile-button">Profile</a> <!-- Profile Button -->
     </header>
 
     <!-- Separator Bar -->
@@ -192,7 +210,7 @@
             </a>
             <a href="/addition/">
                 <article class="donations">
-                    <h2>Addition</h2>
+                    <h2>Databases</h2>
                 </article>
             </a>
         </section>

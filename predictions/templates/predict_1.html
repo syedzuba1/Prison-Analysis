@@ -8,6 +8,23 @@
     <script src="{% static 'predictions/script.js' %}" defer></script>
     <title>Crime Predictor</title>
     <style>
+        .profile-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 14px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .profile-button:hover {
+            background-color: #0056b3;
+        }
         body {
             display: flex;
             flex-direction: column;
@@ -117,6 +134,7 @@
         <h1>Conviction Status vs Age/Gender</h1>
         <h2>The Future of Crime Analysis is Here
         </h2>
+        <a href="/profile" class="profile-button">Profile</a>
     </header>
     <main>
         <!-- Left Section: Form -->

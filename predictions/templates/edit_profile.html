@@ -5,6 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Profile</title>
     <style>
+        .profile-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 14px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .profile-button:hover {
+            background-color: #0056b3;
+        }
         body {
             display: flex;
             justify-content: center; /* Center horizontally */
@@ -52,6 +69,9 @@
     </style>
 </head>
 <body>
+    <header>
+        <a href="/profile" class="profile-button">Profile</a> <!-- Profile Button -->
+    </header>
     <div class="container">
         <h1>Edit Your Profile</h1>
         <form method="post">

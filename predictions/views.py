@@ -328,3 +328,20 @@ def logout_and_delete_profile(request):
 
     # Redirect to the login page or any other page
     return redirect('login')  # Replace 'login' with your desired URL name
+
+def addition_view(request):
+    # Fetch predictions only for the logged-in user
+    predictions_model1 = Prediction1.objects.filter(user=request.user)
+    predictions_model2 = Prediction2.objects.filter(user=request.user)
+    predictions_model3 = Prediction3.objects.filter(user=request.user)
+    predictions_model4 = Prediction4.objects.filter(user=request.user)
+
+    # Pass the filtered data to the template
+    context = {
+        'predictions_model1': predictions_model1,
+        'predictions_model2': predictions_model2,
+        'predictions_model3': predictions_model3,
+        'predictions_model4': predictions_model4,
+    }
+
+    return render(request, 'addition.html', context)
