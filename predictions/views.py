@@ -13,6 +13,7 @@ from .forms import CustomUserCreationForm
 from .models import UserProfile
 from django.db import IntegrityError
 from django.contrib.auth import logout
+from .models import Prediction1
 #with open('predictions/models/preprocessing.pkl', 'rb') as file:
 #    preprocessor1 = pickle.load(file)
 with open('predictions/models/logistic_regression_model.pkl', 'rb') as file:
@@ -79,10 +80,11 @@ def edit_profile(request):
     return render(request, 'edit_profile.html', {'form': form})
 
 def Home(request):
-    return render(request, 'Home.html')
-
+    return redirect('dashboard')
+    
+@login_required
 def dashboard(request):
-    return render(request, 'Home.html')
+    return render(request, 'dashboard.html')
 
 # Define mappings based on training
 age_group_mapping = {
@@ -129,7 +131,13 @@ def predict_view_1(request):
 
             # Make prediction
             prediction = model1.predict(transformed_data)[0]
-
+            Prediction1.objects.create(
+                user=request.user,  # Logged-in user
+                age=age,
+                gender=gender,
+                age_group=age_group,
+                prediction='Undertrial' if prediction == 1 else 'Convicted'
+            )
             # Format the result
             result = f"Predicted Status: {'Undertrial' if prediction == 1 else 'Convicted'}"
     else:
