@@ -175,10 +175,7 @@ def predict_view_2(request):
             predicted_mental_illness = ridge_model_mental.predict(input_data_scaled)
 
             # Format the result
-            result = {
-                'predicted_escapees': f"Predicted number of escapees: {predicted_escapees[0]:.2f}",
-                'predicted_mental_illness': f"Predicted number of mental illness cases: {predicted_mental_illness[0]:.2f}"
-            }
+            result = f"Predicted number of escapees: {predicted_escapees[0]:.2f}"
 
             Prediction2.objects.create(
                 user=request.user,  # Logged-in user
@@ -223,7 +220,7 @@ def predict_view_3(request):
                 # Format the result
                 status = "Convicted" if prediction[0] == 1 else "Undertrial"
                 confidence = max(prediction_proba[0]) * 100
-                result = f"Prediction: {status} (Confidence: {confidence:.2f}%)"
+                result = f"{status}"
                 
                 Prediction3.objects.create(
                     user=request.user,  # Logged-in user
