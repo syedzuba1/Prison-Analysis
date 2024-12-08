@@ -23,29 +23,41 @@
 - **app/**: contains django code for project.
 - **exp/**: python notebook code for ML models being used.
 - **requirements.txt**: Python dependencies for the project.
-./
-|-- Prison_Analysis_Report.pdf
-|-- app/
-|   |-- Prison_Analysis/
-|   |   |-- README.md
-|   |   |-- requirements.txt
-|   |   |-- static/
-|   |   |   |-- images/
-|   |   |   |   |-- [image files]
-|   |   |   |-- admin/
-|   |   |   |   |-- [CSS, JS, and other static files]
-|   |   |-- Prison_Analysis/
-|   |   |   |-- settings.py
-|   |   |   |-- urls.py
-|   |   |-- predictions/
-|   |   |   |-- models/
-|   |   |   |-- templates/
-|   |   |   |-- views.py
-|-- exp/
-|   |-- Dataset/
-|   |   |-- [dataset files]
-|-- requirements.txt
-|-- directory_structure.txt
+
+### Directory Structure
+```plaintext
+.
+├── Prison_Analysis/
+│   ├── manage.py
+│   ├── requirements.txt
+│   ├── README.md
+│   ├── directory_structure.txt
+│   ├── Prison_Analysis/  # Django project settings
+│   │   ├── __init__.py
+│   │   ├── asgi.py
+│   │   ├── settings.py
+│   │   ├── urls.py
+│   │   ├── wsgi.py
+│   ├── predictions/  # Main app logic
+│   │   ├── migrations/
+│   │   ├── templates/
+│   │   ├── static/
+│   │   ├── models.py
+│   │   ├── views.py
+│   │   ├── urls.py
+│   │   ├── forms.py
+│   │   ├── admin.py
+│   ├── static/
+│   │   ├── images/
+│   │   ├── css/
+│   │   ├── js/
+├── exp/  # Experimental files and notebooks
+│   ├── Dataset/
+│   ├── [Other data files]
+├── requirements.txt
+└── Prison_Analysis_Report.pdf
+
+```
 
 ## Instructions to Build the App
 
