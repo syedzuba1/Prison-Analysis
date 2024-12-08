@@ -1,5 +1,5 @@
 """
-WSGI config for crop_yield_predictor project.
+WSGI config for Prison_Analysis project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'crop_yield_predictor.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Prison_Analysis.settings')
 
 application = get_wsgi_application()
