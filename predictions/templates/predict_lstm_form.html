@@ -25,6 +25,7 @@
         .profile-button:hover {
             background-color: #0056b3;
         }
+
         body {
             display: flex;
             flex-direction: column;
@@ -55,13 +56,15 @@
         }
 
         #form-section {
-            flex-basis: 20%;
+            flex-basis: 30%;  /* Increased width of the form section */
             padding: 20px;
             background-color: #f9f9f9;
             border-right: 1px solid #ccc;
             display: flex;
             flex-direction: column;
+            justify-content: flex-start; /* Ensure content starts from the top */
             overflow-y: auto;
+            max-height: 100vh; /* Prevent it from overflowing */
         }
 
         #form-section h2 {
@@ -77,13 +80,13 @@
         .btn {
             display: block;
             width: 100%;
-            padding: 10px;
+            padding: 12px;  /* Increased button padding for better usability */
             background-color: #007bff;
             color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            margin-top: 10px;
+            margin-top: 15px;
         }
 
         .btn:hover {
@@ -126,7 +129,6 @@
             margin: 0;
             padding: 0;
         }
-
 
         #graph-content {
             flex-grow: 1;
@@ -248,7 +250,6 @@
                     vizElement.parentNode.insertBefore(scriptElement, vizElement);
                 </script>
             </div>
-            
         </div>
     </main>
 </body>

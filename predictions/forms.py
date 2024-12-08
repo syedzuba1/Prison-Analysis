@@ -18,11 +18,53 @@ class CrimePredictionForm(forms.Form):
     crime_type = forms.CharField(label="Crime Type (Choose from the graph)")
 
 class BudgetPredictionForm(forms.Form):
-    state_ut = forms.CharField(label='State/UT')
-    year = forms.IntegerField(label='Base Year')
+    STATE_CHOICES = [
+    ('Andhra Pradesh', 'Andhra Pradesh'),
+    ('Arunachal Pradesh', 'Arunachal Pradesh'),
+    ('Assam', 'Assam'),
+    ('Bihar', 'Bihar'),
+    ('Chhattisgarh', 'Chhattisgarh'),
+    ('Goa', 'Goa'),
+    ('Gujarat', 'Gujarat'),
+    ('Haryana', 'Haryana'),
+    ('Himachal Pradesh', 'Himachal Pradesh'),
+    ('Jharkhand', 'Jharkhand'),
+    ('Karnataka', 'Karnataka'),
+    ('Kerala', 'Kerala'),
+    ('Madhya Pradesh', 'Madhya Pradesh'),
+    ('Maharashtra', 'Maharashtra'),
+    ('Manipur', 'Manipur'),
+    ('Meghalaya', 'Meghalaya'),
+    ('Mizoram', 'Mizoram'),
+    ('Nagaland', 'Nagaland'),
+    ('Odisha', 'Odisha'),
+    ('Punjab', 'Punjab'),
+    ('Rajasthan', 'Rajasthan'),
+    ('Sikkim', 'Sikkim'),
+    ('Tamil Nadu', 'Tamil Nadu'),
+    ('Telangana', 'Telangana'),
+    ('Tripura', 'Tripura'),
+    ('Uttar Pradesh', 'Uttar Pradesh'),
+    ('Uttarakhand', 'Uttarakhand'),
+    ('West Bengal', 'West Bengal'),
+    ('Andaman and Nicobar Islands', 'Andaman and Nicobar Islands'),
+    ('Chandigarh', 'Chandigarh'),
+    ('Dadra and Nagar Haveli and Daman and Diu', 'Dadra and Nagar Haveli and Daman and Diu'),
+    ('Lakshadweep', 'Lakshadweep'),
+    ('Delhi', 'Delhi'),
+    ('Puducherry', 'Puducherry'),
+]
+    #YEAR_CHOICES = [(str(year), str(year)) for year in range(2000, 2014)]
+    state_ut = forms.ChoiceField(
+        label='State/UT',
+        choices=[('', 'Select a State/UT')] + STATE_CHOICES,
+        required=True
+    )
+    #state_ut = forms.CharField(label='State/UT')
+    year = forms.IntegerField(label='Base Year', min_value=2000, max_value=2030)
    # num_years = forms.IntegerField(label='Number of Years to Predict')
 
-
+    
 
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
