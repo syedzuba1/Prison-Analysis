@@ -92,7 +92,7 @@ Follow the steps below to set up and run the application locally with Django and
      pip install -r requirements.txt
      ```
 
-4. **Ensure scikit-learn version 1.5.1**:
+4. **If the app doesn't run the scikit-learn version 1.5.2, then try version 1.5.1**:
    - Check the currently installed version of scikit-learn:
      ```bash
      pip show scikit-learn
