@@ -248,7 +248,7 @@ def predict_view_4(request):
             # Extract form data
             state_ut = form.cleaned_data['state_ut'].upper()
             year = form.cleaned_data['year']
-            num_years = form.cleaned_data['num_years']
+            num_years = 1
 
             
 
@@ -262,7 +262,7 @@ def predict_view_4(request):
                 # Directly predict using the model
                 predicted_budgets = model4.predict(input_data)
                 
-                result = f"Predicted budgets: {predicted_budgets[0]}"
+                result = f"Predicted budgets for next 1 year: {predicted_budgets[0]}"
 
                 Prediction4.objects.create(
                     user=request.user,  # Logged-in user

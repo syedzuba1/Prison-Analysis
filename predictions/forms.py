@@ -20,7 +20,7 @@ class CrimePredictionForm(forms.Form):
 class BudgetPredictionForm(forms.Form):
     state_ut = forms.CharField(label='State/UT')
     year = forms.IntegerField(label='Base Year')
-    num_years = forms.IntegerField(label='Number of Years to Predict')
+   # num_years = forms.IntegerField(label='Number of Years to Predict')
 
 
 
