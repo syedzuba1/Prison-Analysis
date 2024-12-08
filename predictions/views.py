@@ -108,10 +108,16 @@ def predict_view_1(request):
             cleaned_data = form.cleaned_data
             age = cleaned_data['age']
             gender = cleaned_data['gender']
+            if gender != 'Male' and gender != 'Female':
+                result = "Error: Please enter proper gender."
+                return render(request, 'predict_1.html', {'form': form, 'result': result})
 
             # Determine the age group
             if age < 16:
                 result = "Error: Age must be 16 or older."
+                return render(request, 'predict_1.html', {'form': form, 'result': result})
+            if age > 60:
+                result = "Error: Age must be less than 60."
                 return render(request, 'predict_1.html', {'form': form, 'result': result})
             elif 16 <= age <= 18:
                 age_group = '16-18 years'
