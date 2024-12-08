@@ -23,6 +23,29 @@
 - **app/**: contains django code for project.
 - **exp/**: python notebook code for ML models being used.
 - **requirements.txt**: Python dependencies for the project.
+./
+|-- Prison_Analysis_Report.pdf
+|-- app/
+|   |-- Prison_Analysis/
+|   |   |-- README.md
+|   |   |-- requirements.txt
+|   |   |-- static/
+|   |   |   |-- images/
+|   |   |   |   |-- [image files]
+|   |   |   |-- admin/
+|   |   |   |   |-- [CSS, JS, and other static files]
+|   |   |-- Prison_Analysis/
+|   |   |   |-- settings.py
+|   |   |   |-- urls.py
+|   |   |-- predictions/
+|   |   |   |-- models/
+|   |   |   |-- templates/
+|   |   |   |-- views.py
+|-- exp/
+|   |-- Dataset/
+|   |   |-- [dataset files]
+|-- requirements.txt
+|-- directory_structure.txt
 
 ## Instructions to Build the App
 
