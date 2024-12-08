@@ -117,7 +117,6 @@
                     <th>Escapee Rate</th>
                     <th>Mental Illness Rate</th>
                     <th>Predicted Escapees</th>
-                    <th>Predicted Mental Illness</th>
                     <th>Date Created</th>
                 </tr>
                 {% for prediction in predictions_model2 %}
@@ -127,7 +126,6 @@
                     <td>{{ prediction.escapee_rate }}</td>
                     <td>{{ prediction.mental_illness_rate }}</td>
                     <td>{{ prediction.predicted_escapees }}</td>
-                    <td>{{ prediction.predicted_mental_illness }}</td>
                     <td>{{ prediction.date_created }}</td>
                 </tr>
                 {% endfor %}
@@ -147,7 +145,6 @@
                     <th>State</th>
                     <th>Crime Type</th>
                     <th>Predicted Status</th>
-                    <th>Confidence</th>
                     <th>Date Created</th>
                 </tr>
                 {% for prediction in predictions_model3 %}
@@ -156,7 +153,6 @@
                     <td>{{ prediction.state }}</td>
                     <td>{{ prediction.crime_type }}</td>
                     <td>{{ prediction.predicted_status }}</td>
-                    <td>{{ prediction.confidence }}</td>
                     <td>{{ prediction.date_created }}</td>
                 </tr>
                 {% endfor %}
