@@ -11,10 +11,10 @@
 
 | Team Member           | Question                                                                                                     | Code Location                       | Report Location                   |
 |-----------------------|-------------------------------------------------------------------------------------------------------------|-------------------------------------|-------------------------------------|
-| Jainam Manish Jain     | Rates of Escape and Mental Illness vs. Educational Infrastructure: Identify relationships between inmate education programs and outcomes. | `predictions/views.py` - line 149 function-predict_view_2 | page 2|
-|  FNU Syed Zubair Ahmed         | Proportion of Undertrial vs. Convicted Inmates Across States and Crimes: Analyze judicial inefficiencies.    | `predictions/views.py` - line 197 function-predict_view_3 | page 5 |
-| Kalash Thakur | Predicting Prison Budget Allocations: Explore historical overcapacity and expenditure data for insights.    | `predictions/views.py` - line 245 function-predict_view_4 | page 7  |
-| Apoorv Sood            | Demographic Analysis of Inmate Populations: Classify inmates as undertrial or convicted by demographics.     | `predictions/views.py` - line 102 function-predict_view_1 | page 9 |
+| Jainam Manish Jain     | Rates of Escape and Mental Illness vs. Educational Infrastructure: Identify relationships between inmate education programs and outcomes. | `app/Prison_Analysis/predictions/views.py` - line 149 function-predict_view_2 | page 2|
+|  FNU Syed Zubair Ahmed         | Proportion of Undertrial vs. Convicted Inmates Across States and Crimes: Analyze judicial inefficiencies.    | `app/Prison_Analysis/predictions/views.py` - line 197 function-predict_view_3 | page 5 |
+| Kalash Thakur | Predicting Prison Budget Allocations: Explore historical overcapacity and expenditure data for insights.    | `app/Prison_Analysis/predictions/views.py` - line 245 function-predict_view_4 | page 7  |
+| Apoorv Sood            | Demographic Analysis of Inmate Populations: Classify inmates as undertrial or convicted by demographics.     | `app/Prison_Analysis/predictions/views.py` - line 102 function-predict_view_1 | page 9 |
 
 ---
 
@@ -92,7 +92,7 @@ Follow the steps below to set up and run the application locally with Django and
      pip install -r requirements.txt
      ```
 
-4. **Ensure scikit-learn version 1.5.1**:
+4. **If the app doesn't run on scikit-learn version 1.5.2, then try version 1.5.1**:
    - Check the currently installed version of scikit-learn:
      ```bash
      pip show scikit-learn
