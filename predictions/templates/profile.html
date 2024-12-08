@@ -12,35 +12,38 @@
             height: 100vh;
             margin: 0;
             font-family: Arial, sans-serif;
-            background-color: lightblue;
+            background: url('/static/predictions/images/Cop1.jpeg') no-repeat center center fixed; /* Background image */
+            background-size: cover; /* Ensure the image covers the full screen */
         }
-    
+
         .container {
             text-align: center;
-            background: #ffffff;
+            background: rgba(255, 255, 255, 0.9); /* Slightly transparent white background for the profile card */
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             width: 500px; /* Increased width */
         }
-    
+
         h1 {
             margin-bottom: 20px;
             font-size: 24px;
+            color: #2c3e50; /* Dark grayish blue */
         }
-    
+
         p {
             margin: 10px 0;
             font-size: 16px;
+            color: #34495e; /* Medium gray */
         }
-    
+
         .buttons {
             margin-top: 20px;
             display: flex;
             justify-content: center;
             gap: 10px; /* Space between buttons */
         }
-    
+
         button {
             background-color: blue;
             color: white;
@@ -51,17 +54,27 @@
             width: 120px; /* Set fixed width */
             height: 40px; /* Set fixed height */
             text-align: center;
+            transition: background-color 0.3s ease;
         }
-    
+
         button:hover {
             background-color: lightblue;
         }
-    
+
         form {
             display: inline-block;
         }
+
+        button.delete {
+            color: red;
+            background-color: white;
+            border: 1px solid red;
+        }
+
+        button.delete:hover {
+            background-color: rgba(255, 0, 0, 0.1);
+        }
     </style>
-       
 </head>
 <body>
     <div class="container">
@@ -81,12 +94,16 @@
             <form method="get" action="{% url 'edit_profile' %}" style="display: inline;">
                 <button type="submit">Edit Profile</button>
             </form>
+
+            <!-- Dashboard Button -->
             <form method="get" action="{% url 'dashboard' %}" style="display: inline;">
                 <button type="submit">Dashboard</button>
             </form>
+
+            <!-- Delete Account Button -->
             <form method="post" action="{% url 'delete_account' %}">
                 {% csrf_token %}
-                <button type="submit" style="color: red;" onclick="return confirm('Are you sure you want to delete your account? This action cannot be undone.');">
+                <button type="submit" class="delete" onclick="return confirm('Are you sure you want to delete your account? This action cannot be undone.');">
                     Delete My Account
                 </button>
             </form>
